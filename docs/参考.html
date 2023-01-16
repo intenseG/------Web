@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vue.js応用 顧客管理アプリケーション</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@2/dist/vue-router.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>
+        <router-link to="/">顧客</router-link>
+        <router-link to="/organizations">組織</router-link>
+      </p>
+      <router-view></router-view>
+      <!-- <template>
+        <search-field
+        v-bind:customers="customers"
+        v-bind:organizations="organizations">
+        </search-field>
+      </template>
+      <template>
+        <customer-table
+        v-bind:customers="customers"
+        v-bind:organizations="organizations">
+      </customer-table>
+      </template> -->
+    </div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
