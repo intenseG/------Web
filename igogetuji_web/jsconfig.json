@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "checkJs": false
+  },
+  "vueCompilerOptions": {
+    "target": 2.7
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

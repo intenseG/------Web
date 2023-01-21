@@ -1,0 +1,144 @@
+$breakpoint_tablet: 768px;
+$breakpoint_mobile: 420px;
+
+@mixin tablet {
+  @media (max-width: ($breakpoint_tablet)) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: ($breakpoint_mobile)) {
+    @content;
+  }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 100;
+  background-color: #293f65;
+  opacity: 0.8;
+
+  &.change_color {
+    opacity: 1;
+  }
+
+  .header-logo {
+    margin: 15px 0;
+  }
+
+  .header-menu {
+    .header-menu_btn {
+      position: fixed;
+      top: 0;
+      right: 10px;
+      display: flex;
+      height: 60px;
+      width: 60px;
+      justify-content: center;
+      align-items: center;
+      z-index: 90;
+      background-color: #293f65;
+      opacity: 0.8;
+      transition: .3s;
+
+      &:hover {
+        background-color: #006f94;
+      }
+      &.change_color {
+        opacity: 1;
+      }
+      span,
+      span:before,
+      span:after {
+        content: '';
+        display: block;
+        height: 3px;
+        width: 25px;
+        border-radius: 3px;
+        background-color: #ffffff;
+        position: absolute;
+      }
+      span:before {
+        bottom: 8px;
+      }
+      span:after {
+        top: 8px;
+      }
+    }
+
+    #menu_btn_check {
+      display: none;
+
+      &:checked ~ .header-menu_btn {
+        span {
+          background-color: rgba(255, 255, 255, 0);
+
+          &::before {
+            bottom: 0;
+            transform: rotate(45deg);
+          }
+
+          &::after {
+            top: 0;
+            transform: rotate(-45deg);
+          }
+        }
+      }
+
+      &:checked ~ .header-menu_content {
+        height: auto;
+        right: 0;
+      }
+    }
+
+    .header-menu_content {
+      position: fixed;
+      top: 0;
+      right: 100%;
+      z-index: 80;
+      background-color: #293f65;
+      opacity: 0.8;
+      /* transition: all 0.7s; */
+    }
+    &.change_color {
+      opacity: 1;
+    }
+    & ul {
+      padding: 70px 10px 0;
+    }
+    & ul li {
+      border-bottom: solid 1px #ffffff;
+      list-style: none;
+    }
+    & ul li a {
+      cursor: pointer;
+      display: block;
+      font-size: 15px;
+      box-sizing: border-box;
+      color:#ffffff;
+      text-decoration: none;
+      padding: 9px 30px 10px 0;
+      position: relative;
+      transition: .3s;
+    }
+    & ul li a::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-top: solid 2px #ffffff;
+      border-right: solid 2px #ffffff;
+      transform: rotate(45deg);
+      position: absolute;
+      right: 11px;
+      top: 16px;
+    }
+    & ul li a:hover {
+      background-color: #006f94;
+    }
+  }
+}
