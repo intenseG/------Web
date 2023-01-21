@@ -1,0 +1,48 @@
+$breakpoint_tablet: 768px;
+$breakpoint_mobile: 420px;
+
+@mixin tablet {
+  @media (max-width: ($breakpoint_tablet)) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: ($breakpoint_mobile)) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+#app {
+  .events_calendar {
+    margin-top: 60px;
+  }
+
+  table {
+    width: 45%;
+    margin-left: 10px;
+    margin-bottom: 30px;
+    border: solid 2px #cce6fc;
+  }
+
+  th {
+    padding: 15px;
+    border: none;
+    background-color: #cce6fc;
+    text-align: center;
+  }
+
+  td {
+    padding: 15px;
+    border-bottom: solid 1px #cce6fc;
+    background-color: #ffffff;
+    text-align: center;
+  }
+}

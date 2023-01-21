@@ -11,29 +11,31 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    calendar: [],
-    currentMonthCalendar: []
+    currentMonthCalendar: [],
   },
   getters: {
-    _calendar: state => state.calendar,
-    _currentMonthCalendar: state => state.currentMonthCalendar
+    _currentMonthCalendar: state => state.currentMonthCalendar,
   },
   mutations: {
     setCurrentMonthCalendar(state, calendar) {
-      state.currentMonthCalendar.push(calendar);
-      state.calendar.push(calendar);
+      for (let i = 0; i < calendar.length; i++) {
+        state.currentMonthCalendar.push(calendar[i]);
+      }
     },
-    createCalendar(state, calendar) {
-      state.calendar.push(calendar);
-    }
+    addCalendar(state, calendar) {
+      state.currentMonthCalendar.push(calendar);
+    },
   },
   actions: {
     async setCurrentMonthCalendarAsync(context) {
       const date = new Date();
-      const fileName = date.getFullYear() + "-" + ('00' + date.getMonth()).slice(-2);
+      const fileName = date.getFullYear() + "-" + ('00' + (date.getMonth() + 1)).slice(-2);
       const response = await fetch("./resources/calendar/" + fileName + ".json");
       const data = await response.json();
       context.commit("setCurrentMonthCalendar", data);
+    },
+    addCalendar(context, calendar) {
+      context.commit("addCalendar", calendar);
     },
   }
 })
@@ -56,6 +58,22 @@ const routes = [
 const router = new VueRouter({
   routes
 });
+
+// const app = Vue.createApp({
+//   created: function() {
+//     $('#datepicker').datepicker();
+//     Promise.all(
+//       [
+//         store.dispatch("setCurrentMonthCalendarAsync")
+//       ]
+//     );
+//   },
+//   template: `
+//   <div id="app">
+//     <router-view></router-view>
+//   </div>
+//   `
+// }).component(App).use(store).use(router).mount("#app");
 
 const app = new Vue({
   el: "#app",
